@@ -3,63 +3,153 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie-app</title>
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movieplex</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+        <link rel="stylesheet" href="login/login.css">
+
     <link rel="stylesheet" href="loader.css">
+
+
 </head>
 
 <body>
-    
-    <header>
-        <h1>Movieplex</h1>
-        <form action="" id="myform">
-            
-            <select name="" id="language">
-                <option value="en" selected>English</option>
-                <option value="es">Spanish</option>
-                <!-- <option value="">Hindi</option>
-                <option value="es">Spanish</option> -->
 
-            </select>
-
-            <input type="search" placeholder="SEARCH" id="search" >
-        </form>
-    </header>
-    <hr>
-
-    <!-- <div id="modal"> 
-        <div class="modal_main">
-            <div class="left">
-                <img src="" alt="">
-            </div>
-            <div class="right">
-                <div class="info2">
-                    <h3>movie name</h3>
-                    <h3>6.8</h3>
-                </div>
-                <div class="desc">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam, veritatis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, eligendi!
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
-    <div class="error"></div>
     <div id="loader">
-        <div class="loader-5 "></div>
-    </div>  
-    <div class="pagination">
-        <button class="btn prevbtn">Prev</button>
-        <h3 id="currentpage"></h3>
-        <button class="btn nextbtn">Next</button>
-    </div>  
-    <main id="main"> </main>
+        <div class="loader-5 center"><span></span></div>
+    </div>
 
 
-    <script src="script.js"></script>
+    <div class="right-section" style="display:none;">
+       
+        <form action="" class="form-box login-form was-validated" id="login-form">
+            <!-- <div class="form-box login-form"> -->
+            <div class="mb-3 heading">
+                <i class="fa fa-tree mx-2" aria-hidden="true" style="font-size: 25px;"></i>
+                <h2>Movieplex </h2>
+            </div>
+
+
+            <div class="mb-3">
+                <h2>Log In</h2>
+            </div>
+
+            <div>
+                <h6 class="error_msg d-none" >Invalid Username or password (If you are new user please signup first)</h6>
+                <div class="mb-3">
+                    <label for="username" class="form-label mx-2">Enter Username</label>
+                    <input type="text" placeholder="username" id="username" class="form-control"
+                        autocomplete="off" required>
+                </div>
+                <div class="mb-3">
+
+                    <label for="password" class="form-label mx-2">password</label>
+                    <input type="password" placeholder="********" id="password" maxlength="12" size="10" min="4"
+                        class="form-control" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <center>
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </center>
+            </div>
+
+
+            <div class="mb-3">
+                <h6 style="float: right;">Don't have an account ? <a type="button" class="signup_btn">Signup</a></h6>
+            </div>
+
+            <!-- </div> -->
+        </form>
+
+
+        <form class="form-box signup-form" style="display: none;">
+
+            <div class="mb-3 heading">
+                <i class="fa fa-tree mx-2" aria-hidden="true" style="font-size: 25px;"></i>
+                <h2>Movieplex </h2>
+            </div>
+
+
+            <div class="mb-3">
+                <h2>Signup</h2>
+            </div>
+
+            <div>
+
+                
+                
+                <!-- <div class="mb-3">
+                    <label for="number" class="form-label mx-2">Number</label>
+                    <input type="number" id="number" class="form-control" autocomplete="off">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label mx-2">Email</label>
+                    <input type="email" id="email" class="form-control" autocomplete="off">
+                </div> -->
+                
+                <div class="mb-3">
+                    <label for="signup_name" class="form-label mx-2">Username</label>
+                    <input type="text" id="signup_name" class="form-control" autocomplete="off">
+                </div>
+
+                <div class="mb-3">
+                    <label for="signup_password" class="form-label mx-2">password</label>
+                    <input type="password" placeholder="********" id="signup_password" class="form-control" autocomplete="off">
+                </div>
+
+
+            </div>
+            <div class="mb-3">
+                <center>
+
+                    <button type="submit" class="btn btn-primary">Signup</button>
+                </center>
+            </div>
+
+
+            <div class="mb-3">
+                <h6 style="float: right;">Already a member ? <a type="button" class="login_btn">Login</a></h6>
+            </div>
+
+
+
+        </form>
+
+
+    </div>
+
+
+
+
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+<script>
+// toggling between login and signup form 
+    $(document).on('click', '.signup_btn', function () {
+        $('.login-form').hide();
+        $('.signup-form').show();
+    })
+
+
+    $(document).on('click', '.login_btn', function () {
+        $('.login-form').show();
+        $('.signup-form').hide();
+    })
+
+</script>
+
+
+
+<script src="login/login.js"></script>
 
 </html>
