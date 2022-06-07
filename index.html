@@ -19,15 +19,14 @@
 
 <body>
 
-    <div id="loader">
+    <!-- <div id="loader">
         <div class="loader-5 center"><span></span></div>
-    </div>
+    </div> -->
 
 
-    <div class="right-section" style="display:none;">
+    <!-- <div class="right-section" style="display:none;">
        
         <form action="" class="form-box login-form was-validated" id="login-form">
-            <!-- <div class="form-box login-form"> -->
             <div class="mb-3 heading">
                 <i class="fa fa-tree mx-2" aria-hidden="true" style="font-size: 25px;"></i>
                 <h2>Movieplex </h2>
@@ -55,7 +54,7 @@
             <div class="mb-3">
                 <center>
 
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" id="login" class="btn btn-primary">Login</button>
                 </center>
             </div>
 
@@ -64,7 +63,6 @@
                 <h6 style="float: right;">Don't have an account ? <a type="button" class="signup_btn">Signup</a></h6>
             </div>
 
-            <!-- </div> -->
         </form>
 
 
@@ -82,17 +80,7 @@
 
             <div>
 
-                
-                
-                <!-- <div class="mb-3">
-                    <label for="number" class="form-label mx-2">Number</label>
-                    <input type="number" id="number" class="form-control" autocomplete="off">
-                </div>
-                
-                <div class="mb-3">
-                    <label for="email" class="form-label mx-2">Email</label>
-                    <input type="email" id="email" class="form-control" autocomplete="off">
-                </div> -->
+
                 
                 <div class="mb-3">
                     <label for="signup_name" class="form-label mx-2">Username</label>
@@ -123,17 +111,136 @@
         </form>
 
 
-    </div>
+    </div> -->
 
+    <main>
+        <div class="container">MOVIEPLEX</div>
+
+        <div class="btnbox">
+            <button type="button" id="login" class="login_btn">LOGIN</button>
+
+        </div>
+    </main>
 
 
 
 </body>
 
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
 
-<script>
+
+
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithRedirect , signInWithPopup , signOut  } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyDta9p8cSYHvU49Qr3rKrkEcbQpd8IpDWs",
+        authDomain: "test-authentication-5737b.firebaseapp.com",
+        projectId: "test-authentication-5737b",
+        storageBucket: "test-authentication-5737b.appspot.com",
+        messagingSenderId: "984585092320",
+        appId: "1:984585092320:web:6794e7c82cf05d3727e485",
+        measurementId: "G-PZLFHCHW94"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider(app);
+
+    let login = document.querySelector('#login');
+
+    login.addEventListener('click', (e) => {
+        // signInWithRedirect(auth, provider);
+
+        // getRedirectResult(auth)
+        //     .then((result) => {
+        //         // This gives you a Google Access Token. You can use it to access Google APIs.
+        //         const credential = GoogleAuthProvider.credentialFromResult(result);
+        //         const token = credential.accessToken;
+
+        //         // The signed-in user info.
+        //         const user = result.user;
+        //     }).catch((error) => {
+        //         // Handle Errors here.
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //         // The email of the user's account used.
+        //         const email = error.customData.email;
+        //         // The AuthCredential type that was used.
+        //         const credential = GoogleAuthProvider.credentialFromError(error);
+        //         // ...
+        //     });
+
+
+
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                 console.log(user);
+                // username.value=user.displayName;
+                // ...
+                
+                localStorage.setItem("username",user.displayName);
+                localStorage.setItem("photo",user.photoURL);
+                localStorage.setItem("loggedin",1);
+                location.href = "movies.html";
+
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+
+
+
+
+
+    })
+
+    // logout.addEventListener('click', (e) => {
+
+    //         signOut(auth).then(() => {
+    //             username.innerHTML=user.displayName;
+    //         alert("Sign-out successful.+ "+ user.displayName);
+    //         }).catch((error) => {
+    //             alert("An error happened.");
+    //         });
+    //     })
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script> -->
+
+<!-- <script>
 // toggling between login and signup form 
     $(document).on('click', '.signup_btn', function () {
         $('.login-form').hide();
@@ -146,10 +253,10 @@
         $('.signup-form').hide();
     })
 
-</script>
+</script> -->
 
 
 
-<script src="login/login.js"></script>
+<!-- <script src="login/login.js"></script> -->
 
 </html>
