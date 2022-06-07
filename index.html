@@ -151,7 +151,7 @@
 
 
 
-        import {getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        import {getAuth, GoogleAuthProvider , signInWithPopup } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
 
         const provider = new GoogleAuthProvider(app);
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -165,7 +165,7 @@
         // firebase.auth().useDeviceLanguage();
 
 
-        import {  signInWithPopup } from "firebase/auth";
+//         import {  signInWithPopup } from "firebase/auth";
 
         const auth = getAuth();
 
