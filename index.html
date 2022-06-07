@@ -19,12 +19,12 @@
 
 <body>
 
-<!--     <div id="loader">
+    <div id="loader">
         <div class="loader-5 center"><span></span></div>
-    </div> -->
+    </div>
 
 
-    <div class="right-section" style="display:block;">
+    <div class="right-section" style="display:none;">
        
         <form action="" class="form-box login-form was-validated" id="login-form">
             <!-- <div class="form-box login-form"> -->
@@ -55,7 +55,7 @@
             <div class="mb-3">
                 <center>
 
-                    <button type="button" id="login_btn" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </center>
             </div>
 
@@ -126,76 +126,6 @@
     </div>
 
 
- <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyCPGM4nH6LlzfaWkYIHRQ2KH2Eu6ePUaE4",
-            authDomain: "fir-812ea.firebaseapp.com",
-            projectId: "fir-812ea",
-            storageBucket: "fir-812ea.appspot.com",
-            messagingSenderId: "47728421349",
-            appId: "1:47728421349:web:e21b1fd2e5afac0d93670c",
-            measurementId: "G-FM1XN3MXF3"
-        };
-
-         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-
-
-
-
-        import {getAuth, GoogleAuthProvider , signInWithPopup } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
-
-        const provider = new GoogleAuthProvider(app);
-        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-
-
-        // import { getAuth } from "firebase/auth";
-
-        const auth = getAuth(app);
-        auth.languageCode = 'it';
-        // To apply the default browser preference instead of explicitly setting it.
-        // firebase.auth().useDeviceLanguage();
-
-
-//         import {  signInWithPopup } from "firebase/auth";
-
-//         const auth = getAuth();
-
-        login_btn = document.getElementById('login_btn');
-        login_btn.addEventListner('click',(e)=>{
-
-        
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                const user = result.user;
-                // ...
-            }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-            });
-
-        })
-
-
-    </script>
 
 
 </body>
@@ -211,15 +141,15 @@
     })
 
 
-//     $(document).on('click', '.login_btn', function () {
-//         $('.login-form').show();
-//         $('.signup-form').hide();
-//     })
+    $(document).on('click', '.login_btn', function () {
+        $('.login-form').show();
+        $('.signup-form').hide();
+    })
 
 </script>
 
 
 
-<!-- <script src="login/login.js"></script> -->
+<script src="login/login.js"></script>
 
 </html>
