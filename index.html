@@ -145,34 +145,34 @@
             measurementId: "G-FM1XN3MXF3"
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
+         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
 
 
 
 
-        import { GoogleAuthProvider } from "firebase/auth";
+        import {getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
 
-        const provider = new GoogleAuthProvider();
+        const provider = new GoogleAuthProvider(app);
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 
-        import { getAuth } from "firebase/auth";
+        // import { getAuth } from "firebase/auth";
 
-        const auth = getAuth();
+        const auth = getAuth(app);
         auth.languageCode = 'it';
         // To apply the default browser preference instead of explicitly setting it.
         // firebase.auth().useDeviceLanguage();
 
 
-        import { signInWithPopup } from "firebase/auth";
+        import {  signInWithPopup } from "firebase/auth";
+
+        const auth = getAuth();
+
+        login_btn = document.getElementById('login_btn');
+        login_btn.addEventListner('click',(e)=>{
 
         
-     
-        login_btn = document.getElementById('login_btn');
-        
-     login_btn.addEventListner('click',(e)=>{
         signInWithPopup(auth, provider)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
