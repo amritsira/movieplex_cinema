@@ -55,7 +55,7 @@
             <div class="mb-3">
                 <center>
 
-                    <button type="submit" id="login_btn" class="btn btn-primary">Login</button>
+                    <button type="button" id="login_btn" class="btn btn-primary">Login</button>
                 </center>
             </div>
 
@@ -166,9 +166,9 @@
         // firebase.auth().useDeviceLanguage();
 
 
-        import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+        import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-        const auth = getAuth();
+        
      
         login_btn = document.getElementById('login_btn');
         
@@ -220,6 +220,6 @@
 
 
 
-<script src="login/login.js"></script>
+<!-- <script src="login/login.js"></script> -->
 
 </html>
